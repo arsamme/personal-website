@@ -9,13 +9,11 @@ services:
   terminal:
     build: .
     container_name: terminal
-    restart: unless-stopped
-    environment:
-      - NEXT_PUBLIC_ENABLE_TRACKING=${ENABLE_TRACKING}
-      - NEXT_PUBLIC_TRACKING_URL=${TRACKING_URL}
-      - NEXT_PUBLIC_TRACKING_SITE_ID=${TRACKING_SITE_ID}
+    restart: always
+    ports:
+      - "3000:3000"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      test: [ "CMD", "curl", "-f", "http://localhost:3000" ]
       interval: 200s
       timeout: 200s
       retries: 5
